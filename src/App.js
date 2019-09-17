@@ -26,6 +26,7 @@ export default function App() {
     const classes = useStyles();
 
     const [fg, setFg] = useState(0);
+    const [currentNode, setCurrentNode] = useState({});
 
     const hiveData = {
         nodes: [
