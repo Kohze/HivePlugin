@@ -1,0 +1,2 @@
+# HivePlugin
+Hive Chrome
