@@ -228,12 +228,20 @@ export default function App() {
             node, // lookAt ({ x, y, z })
             3000  // ms transition duration
         );
+
+        setNodeGroup(node.group);
+        setNodeId(node.id);
+        setNodeName(node.name);
+        setNodeDescription(node.description);
+        setNodeOwner(node.owner);
+        setNodeUrl(node.url);
+        setNodeImage(node.image);
+        setNodeHiveOrigin(node.origin);
+        setNodePreviousNode(node.previousNode);
     }
 
-    const [name, setName] = useState("");
     const _handleSubmit = (evt) => {
         evt.preventDefault();
-        alert(`Submitting Name ${name}`);
     }
 
     return (
