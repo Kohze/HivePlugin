@@ -26,19 +26,66 @@ export default function App() {
     const classes = useStyles();
 
     const [fg, setFg] = useState(0);
-    const [currentNode, setCurrentNode] = useState({});
 
+    //currentNode:
+    const [nodeGroup, setNodeGroup] = useState(0);
+    const [nodeId, setNodeId] = useState(0);
+    const [nodeName, setNodeName] = useState("");
+    const [nodeDescription, setNodeDescription] = useState("");
+    const [nodeOwner, setNodeOwner] = useState("");
+    const [nodeUrl, setNodeUrl] = useState("");
+    const [nodeImage, setNodeImage] = useState("");
+    const [nodeHiveOrigin, setNodeHiveOrigin] = useState("");
+    const [nodePreviousNode, setNodePreviousNode] = useState("");
+
+    // group reference:
+    // 1: not yet visited
+    // 2: already visited
+    // 3: likes
     const hiveData = {
+
         nodes: [
-            { group: 1, id: 1, title: "Ideas Born in the BSV Hackathon with Carl Jackett" },
-            { group: 2, id: 2, title: "London Meetup" },
-            { group: 3, id: 3, title: "BSV Alias" },
-            { group: 4, id: 4, title: "The Power of Simple with Wei Zhang" }
+            { group: 2, id: 1, name: "Hive!"},
+
+            { group: 2, id: 100, name: "SV Meetups"},
+            { group: 2, id: 101, name: "Ideas Born in the BSV Hackathon with Carl Jackett" },
+            { group: 2, id: 102, name: "London Meetup" },
+            { group: 2, id: 103, name: "BSV Alias" },
+            { group: 3, id: 104, name: "The Power of Simple with Wei Zhang" },
+
+            { group: 1, id: 200, name: "Tether"},
+
+            { group: 1, id: 300, name: "SpaceX"},
+            { group: 1, id: 301, name: "Falcon Heavy"},
+
+            { group: 1, id: 400, name: "Smartphones"},
+            { group: 1, id: 401, name: "Apple Iphone"},
+
+            { group: 1, id: 500, name: "Elon Musk"},
+
+            { group: 1, id: 600, name: "The Nakamoto Case"},
+            { group: 1, id: 601, name: "Craig Wright"}
         ],
         links: [
-            {source: 1, target: 2, curvature: 0.8, rotation: Math.PI * 1 / 6 },
-            {source: 3, target: 2, curvature: 0.8, rotation: Math.PI * 1 / 6 },
-            {source: 4, target: 2, curvature: 0.8, rotation: Math.PI * 1 / 6 }
+            {source: 100, target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+
+            {source: 101, target: 100, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+            {source: 102, target: 101, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+            {source: 103, target: 101, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+            {source: 104, target: 101, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+
+            {source: 200, target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+
+            {source: 300, target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+            {source: 301, target: 300, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+
+            {source: 400, target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+            {source: 401, target: 400, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+
+            {source: 500, target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+
+            {source: 600, target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6 },
+            {source: 601, target: 600, curvature: 0.8, rotation: Math.PI * 1 / 6 },
         ]
     };
 
@@ -51,6 +98,12 @@ export default function App() {
             node, // lookAt ({ x, y, z })
             3000  // ms transition duration
         );
+    }
+
+    const [name, setName] = useState("");
+    const _handleSubmit = (evt) => {
+        evt.preventDefault();
+        alert(`Submitting Name ${name}`);
     }
 
     return (
@@ -79,7 +132,7 @@ export default function App() {
                     width={1000}
                     graphData={hiveData}
                     nodeAutoColorBy="group"
-                    nodeLabel="title"
+                    nodeLabel="name"
                     linkDirectionalArrowLength={3.5}
                     linkDirectionalArrowRelPos={1}
                     linkWidth={2}
@@ -91,9 +144,60 @@ export default function App() {
                 />
 
             </Container>
+
             <footer className={classes.footer}>
                 <Container maxWidth="xl">
                     <h3>Add HiveNode</h3>
+
+                    <form onSubmit={_handleSubmit}>
+                        <label>
+                            Name:
+                            <input
+                                type="text"
+                                value={nodeName}
+                                onChange={e => setNodeName(e.target.value)}
+                            />
+                        </label>
+
+                        <label>
+                            Description:
+                            <input
+                                type="text"
+                                value={nodeDescription}
+                                onChange={e => setNodeDescription(e.target.value)}
+                            />
+                        </label>
+
+                        <label>
+                            URL:
+                            <input
+                                type="text"
+                                value={nodeUrl}
+                                onChange={e => setNodeUrl(e.target.value)}
+                            />
+                        </label>
+
+                        <label>
+                            Image:
+                            <input
+                                type="text"
+                                value={nodeImage}
+                                onChange={e => setNodeImage(e.target.value)}
+                            />
+                        </label>
+
+                        <label>
+                            Previous Node:
+                            <input
+                                type="text"
+                                value={nodePreviousNode}
+                                onChange={e => setNodePreviousNode(e.target.value)}
+                            />
+                        </label>
+
+                        <input type="submit" value="Submit" />
+                    </form>
+
                 </Container>
             </footer>
         </div>
