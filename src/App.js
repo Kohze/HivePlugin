@@ -5,6 +5,9 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {ForceGraph3D} from "react-force-graph";
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
@@ -56,7 +59,7 @@ export default function App() {
                 url: "https://bitcoinsv.io/",
                 owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
                 origin: "6c3199b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
             {
                 group: 2,
@@ -78,7 +81,7 @@ export default function App() {
                 url: "https://www.meetup.com/de-DE/LondonBitcoin/events/259238987/",
                 owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
                 origin: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
             {
                 group: 2,
@@ -112,7 +115,7 @@ export default function App() {
                 url: "https://tether.to/",
                 owner: "035e939b704a822a03300686ca968da7839c6dc9078b40ee3e8239fdf98574826f",
                 origin: "030e113a95ad10148dc5f5159da447ba9918ca4ee4aa82cd07e744446abd1e61_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
 
             {
@@ -124,7 +127,7 @@ export default function App() {
                 url: "https://www.spacex.com/",
                 owner: "035e939b704a822a03300686ca968da7839c6dc9078b40ee3e8239fdf98574826f",
                 origin: "44b7891370481142b19bc3e67346ec836ee0311d61881f6d1e2f86873b7f6ab0_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
             {
                 group: 1,
@@ -135,7 +138,7 @@ export default function App() {
                 url: "https://en.wikipedia.org/wiki/Falcon_Heavy",
                 owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
                 origin: "0b39856df9e9d31a94661139a048c4dbfeb3b3632325208cf598d83583d97d92_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
 
             {
@@ -147,7 +150,7 @@ export default function App() {
                 url: "https://en.wikipedia.org/wiki/Smartphone",
                 owner: "035e939b704a822a03300686ca968da7839c6dc9078b40ee3e8239fdf98574826f",
                 origin: "223dc38baa87af15f947d0dce260da1265e89f5e773c254a5aff115b9a75ff93_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
             {
                 group: 1,
@@ -158,7 +161,7 @@ export default function App() {
                 url: "https://www.apple.com",
                 owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
                 origin: "7147376d4a0fd01aa20c3c18459bd42f272fc6ff674a65141a5365ece5187cdf_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
 
             {
@@ -170,7 +173,7 @@ export default function App() {
                 url: "https://en.wikipedia.org/wiki/Elon_Musk",
                 owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
                 origin: "71c5a7589ee8b52eac815649b8dc7f6323fecc094efcd794467293050cc19b30_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
 
             {
@@ -182,18 +185,18 @@ export default function App() {
                 url: "https://en.wikipedia.org/wiki/Satoshi_Nakamoto",
                 owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
                 origin: "34eddcb120c181bbd7c88f4fd6658340f5ab8f21be7e9a707fffa05cba92174f_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             },
             {
                 group: 1,
                 id: 601,
                 name: "Craig Wright",
-                description: "Craig Steven Wright (born October 1970)[2] is an Australian computer scientist and businessman. He has publicly claimed to be the main part of the team that created bitcoin, and the identity behind the pseudonym Satoshi Nakamoto.",
+                description: "Craig Steven Wright (born October 1970) is an Australian computer scientist and businessman. He has publicly claimed to be the main part of the team that created bitcoin, and the identity behind the pseudonym Satoshi Nakamoto.",
                 image: "https://static.coindesk.com/wp-content/uploads/2018/04/Craig-Wright-860x430.png",
                 url: "https://craigwright.net/",
                 owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
                 origin: "91635449461fd52259f4542cee78fc58fab35b0737bc362fadcdd8602d1cf547_o2",
-                previousNode: ""
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
             }
         ],
         links: [
@@ -242,7 +245,14 @@ export default function App() {
 
     const _handleSubmit = (evt) => {
         evt.preventDefault();
-    }
+        alert("ok");
+    };
+
+    function _handleMyLink() {
+        if (nodeUrl) {
+            window.open(nodeUrl, '_blank');
+        }
+    };
 
     return (
         <div
@@ -266,7 +276,7 @@ export default function App() {
                     {/*</Typography>*/}
                     {/*<Typography variant="body1">Sticky footer placeholder.</Typography>*/}
                     <ForceGraph3D
-                        height={700}
+                        height={400}
                         width={1000}
                         graphData={hiveData}
                         nodeAutoColorBy="group"
@@ -287,55 +297,58 @@ export default function App() {
 
                 <footer className={classes.footer}>
                     <Container maxWidth="xl">
-                        <h3>Add HiveNode</h3>
-
+                        <h3>Details</h3>
                         <form onSubmit={_handleSubmit}>
-                            <label>
-                                Name:
-                                <input
-                                    type="text"
-                                    value={nodeName}
-                                    onChange={e => setNodeName(e.target.value)}
-                                />
-                            </label>
-
-                            <label>
-                                Description:
-                                <input
-                                    type="text"
-                                    value={nodeDescription}
-                                    onChange={e => setNodeDescription(e.target.value)}
-                                />
-                            </label>
-
-                            <label>
-                                URL:
-                                <input
-                                    type="text"
-                                    value={nodeUrl}
-                                    onChange={e => setNodeUrl(e.target.value)}
-                                />
-                            </label>
-
-                            <label>
-                                Image:
-                                <input
-                                    type="text"
-                                    value={nodeImage}
-                                    onChange={e => setNodeImage(e.target.value)}
-                                />
-                            </label>
-
-                            <label>
-                                Previous Node:
-                                <input
-                                    type="text"
-                                    value={nodePreviousNode}
-                                    onChange={e => setNodePreviousNode(e.target.value)}
-                                />
-                            </label>
-
-                            <input type="submit" value="Submit"/>
+                            <TextField
+                                label="Name"
+                                value={nodeName}
+                                onChange={e => setNodeName(e.target.value)}
+                                fullWidth
+                            />
+                            <br/>
+                            <TextField
+                                label="description"
+                                value={nodeDescription}
+                                onChange={e => setNodeDescription(e.target.value)}
+                                fullWidth
+                            />
+                            <br/>
+                            <TextField
+                                label="URL"
+                                value={nodeUrl}
+                                onChange={e => setNodeUrl(e.target.value)}
+                                fullWidth
+                            />
+                            <br/>
+                            <TextField
+                                label="Image"
+                                value={nodeImage}
+                                onChange={e => setNodeImage(e.target.value)}
+                                fullWidth
+                            />
+                            <br/>
+                            <TextField
+                                label="Previous Node"
+                                value={nodePreviousNode}
+                                onChange={e => setNodePreviousNode(e.target.value)}
+                                fullWidth
+                            />
+                            <br/>
+                            <br/>
+                            {/*<Button*/}
+                            {/*    variant="outlined"*/}
+                            {/*    color="secondary"*/}
+                            {/*    onClick={_handleMyLink()}*/}
+                            {/*>Open link</Button>*/}
+                            &nbsp;&nbsp;&nbsp;
+                            <Button
+                                type="submit"
+                                variant="outlined"
+                                color="primary"
+                                onClick={_handleSubmit}
+                            >Add Hive Node</Button>
+                            <br/>
+                            <br/>
                         </form>
 
                     </Container>
