@@ -7,12 +7,52 @@ import {ForceGraph3D} from "react-force-graph";
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PropTypes from 'prop-types';
+import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <Typography
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            <Box p={3}>{children}</Box>
+        </Typography>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
+    },
+    tabRoot: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
     },
     main: {
         marginTop: theme.spacing(8),
@@ -23,6 +63,15 @@ const useStyles = makeStyles(theme => ({
         marginTop: 'auto',
         backgroundColor: 'white',
     },
+    image: {
+        maxHeight: '280px',
+        height: 'auto',
+        align: 'center',
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '50%'
+    }
 }));
 
 export default function App() {
@@ -33,11 +82,11 @@ export default function App() {
     //currentNode:
     const [nodeGroup, setNodeGroup] = useState(0);
     const [nodeId, setNodeId] = useState(0);
-    const [nodeName, setNodeName] = useState("");
-    const [nodeDescription, setNodeDescription] = useState("");
+    const [nodeName, setNodeName] = useState("Hive");
+    const [nodeDescription, setNodeDescription] = useState("Content is scattered across the web without connections. Inspired by nature, we envisioned a decentralized platform to combine efforts to interrelate the many lost dots again. With Hive, we find, share, and connect what actually matters to us.");
     const [nodeOwner, setNodeOwner] = useState("");
-    const [nodeUrl, setNodeUrl] = useState("");
-    const [nodeImage, setNodeImage] = useState("");
+    const [nodeUrl, setNodeUrl] = useState("https://hive-e330f.firebaseapp.com/");
+    const [nodeImage, setNodeImage] = useState("http://hive.kohze.com/images/header-image-dark.png");
     const [nodeHiveOrigin, setNodeHiveOrigin] = useState("");
     const [nodePreviousNode, setNodePreviousNode] = useState("");
 
@@ -46,7 +95,6 @@ export default function App() {
     // 2: already visited
     // 3: likes
     const hiveData = {
-
         nodes: [
             {group: 2, id: 1, name: "Hive!"},
 
@@ -248,11 +296,19 @@ export default function App() {
         alert("ok");
     };
 
-    function _handleMyLink() {
+    const _handleMyLink = (evt) => {
+        evt.preventDefault();
         if (nodeUrl) {
             window.open(nodeUrl, '_blank');
         }
     };
+
+    const [value, setValue] = React.useState(0);
+
+    function handleChange(evt, newValue) {
+        evt.preventDefault();
+        setValue(newValue);
+    }
 
     return (
         <div
@@ -297,60 +353,86 @@ export default function App() {
 
                 <footer className={classes.footer}>
                     <Container maxWidth="xl">
-                        <h3>Details</h3>
-                        <form onSubmit={_handleSubmit}>
-                            <TextField
-                                label="Name"
-                                value={nodeName}
-                                onChange={e => setNodeName(e.target.value)}
-                                fullWidth
-                            />
-                            <br/>
-                            <TextField
-                                label="description"
-                                value={nodeDescription}
-                                onChange={e => setNodeDescription(e.target.value)}
-                                fullWidth
-                            />
-                            <br/>
-                            <TextField
-                                label="URL"
-                                value={nodeUrl}
-                                onChange={e => setNodeUrl(e.target.value)}
-                                fullWidth
-                            />
-                            <br/>
-                            <TextField
-                                label="Image"
-                                value={nodeImage}
-                                onChange={e => setNodeImage(e.target.value)}
-                                fullWidth
-                            />
-                            <br/>
-                            <TextField
-                                label="Previous Node"
-                                value={nodePreviousNode}
-                                onChange={e => setNodePreviousNode(e.target.value)}
-                                fullWidth
-                            />
-                            <br/>
-                            <br/>
-                            {/*<Button*/}
-                            {/*    variant="outlined"*/}
-                            {/*    color="secondary"*/}
-                            {/*    onClick={_handleMyLink()}*/}
-                            {/*>Open link</Button>*/}
-                            &nbsp;&nbsp;&nbsp;
-                            <Button
-                                type="submit"
-                                variant="outlined"
-                                color="primary"
-                                onClick={_handleSubmit}
-                            >Add Hive Node</Button>
-                            <br/>
-                            <br/>
-                        </form>
 
+                        <Paper className={classes.tabRoot}>
+                            <Tabs
+                                value={value}
+                                onChange={handleChange}
+                                indicatorColor="primary"
+                                textColor="primary"
+                                centered
+                            >
+                                <Tab label="View Hive Node" />
+                                <Tab label="Add Hive Node" />
+                            </Tabs>
+                            <TabPanel value={value} index={0}>
+
+                                <Typography variant="h5" component="h2" gutterBottom>
+                                    { nodeName }
+                                </Typography>
+                                <Typography variant="subtitle1" component="h2" gutterBottom>
+                                    { nodeDescription }
+                                </Typography>
+                                <Typography variant="h5" component="h2" gutterBottom>
+                                    <Link href={nodeUrl} target={"_blank"} variant="body2" className={classes.link}>
+                                        Go to page
+                                    </Link>
+                                </Typography>
+                                <Link href={nodeUrl} target={"_blank"} variant="body2" className={classes.link}>
+                                    <img className={classes.image} src={ nodeImage } />
+                                </Link>
+
+                            </TabPanel>
+                            <TabPanel value={value} index={1}>
+                                <h3>Details</h3>
+                                <form onSubmit={_handleSubmit}>
+                                    <TextField
+                                        label="Name"
+                                        value={nodeName}
+                                        onChange={e => setNodeName(e.target.value)}
+                                        fullWidth
+                                    />
+                                    <br/>
+                                    <TextField
+                                        label="description"
+                                        value={nodeDescription}
+                                        onChange={e => setNodeDescription(e.target.value)}
+                                        fullWidth
+                                    />
+                                    <br/>
+                                    <TextField
+                                        label="URL"
+                                        value={nodeUrl}
+                                        onChange={e => setNodeUrl(e.target.value)}
+                                        fullWidth
+                                    />
+                                    <br/>
+                                    <TextField
+                                        label="Image"
+                                        value={nodeImage}
+                                        onChange={e => setNodeImage(e.target.value)}
+                                        fullWidth
+                                    />
+                                    <br/>
+                                    <TextField
+                                        label="Previous Node"
+                                        value={nodePreviousNode}
+                                        onChange={e => setNodePreviousNode(e.target.value)}
+                                        fullWidth
+                                    />
+                                    <br/>
+                                    <br/>
+                                    <Button
+                                        type="submit"
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={_handleSubmit}
+                                    >Add Hive Node</Button>
+                                    <br/>
+                                    <br/>
+                                </form>
+                            </TabPanel>
+                        </Paper>
                     </Container>
                 </footer>
             </div>
