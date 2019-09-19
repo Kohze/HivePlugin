@@ -293,7 +293,6 @@ export default function App() {
 
     const _handleSubmit = (evt) => {
         evt.preventDefault();
-        alert("ok");
     };
 
     const _handleMyLink = (evt) => {
