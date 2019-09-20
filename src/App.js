@@ -295,13 +295,6 @@ export default function App() {
         evt.preventDefault();
     };
 
-    const _handleMyLink = (evt) => {
-        evt.preventDefault();
-        if (nodeUrl) {
-            window.open(nodeUrl, '_blank');
-        }
-    };
-
     const [value, setValue] = React.useState(0);
 
     function handleChange(evt, newValue) {
@@ -320,16 +313,11 @@ export default function App() {
         >
             <div className={classes.root}>
                 <CssBaseline/>
-                <Container component="main" className={classes.main} maxWidth="xl">
+                <Container component="main" className={classes.main} maxWidth="xl" fixed>
                     <Typography variant="h2" component="h1" gutterBottom>
                         Hive Chrome Extension
                     </Typography>
 
-                    {/*<Typography variant="h5" component="h2" gutterBottom>*/}
-                    {/*  {'Pin a footer to the bottom of the viewport.'}*/}
-                    {/*  {'The footer will move as the main element of the page grows.'}*/}
-                    {/*</Typography>*/}
-                    {/*<Typography variant="body1">Sticky footer placeholder.</Typography>*/}
                     <ForceGraph3D
                         height={400}
                         width={1000}
