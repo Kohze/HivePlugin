@@ -5002,11 +5002,22 @@ export default function App() {
             }]
         });
 
+        setNodeGroup(addNode.group);
+        setNodeId(addNode.id);
+        setNodeName(addNode.name);
+        setNodeDescription(addNode.description);
+        setNodeOwner(addNode.owner);
+        setNodeUrl(addNode.url);
+        setNodeImage(addNode.image);
+        setNodeHiveOrigin(addNode.origin);
+        setNodePreviousNode(addNode.previousNode);
+
         setShowAlert(false)
         setNewNodeImage("");
         setNewNodeUrl("");
         setNewNodeDescription("");
         setNewNodeName("");
+        setValue(0);
     };
 
     const [value, setValue] = React.useState(0);
@@ -5121,7 +5132,7 @@ export default function App() {
                                 <SweetAlert
                                     show={showAlert}
                                     title="Add Hive Node"
-                                    text={newNodeName + " successfully added!"}
+                                    text={"\"" + newNodeName + "\" added successfully!"}
                                     onConfirm={_handleAlertClose}
                                 />
                                 <br/>
