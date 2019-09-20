@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -19,7 +18,7 @@ import SweetAlert from 'sweetalert-react'; // eslint-disable-line import/no-extr
 import 'sweetalert/dist/sweetalert.css';
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <Typography
@@ -89,7 +88,7 @@ export default function App() {
     const [nodeName, setNodeName] = useState("Hive");
     const [nodeDescription, setNodeDescription] = useState("Content is scattered across the web without connections. Inspired by nature, we envisioned a decentralized platform to combine efforts to interrelate the many lost dots again. With Hive, we find, share, and connect what actually matters to us.");
     const [nodeOwner, setNodeOwner] = useState("");
-    const [nodeUrl, setNodeUrl] = useState("https://hive-e330f.firebaseapp.com/");
+    const [nodeUrl, setNodeUrl] = useState("http://hive.kohze.com/");
     const [nodeImage, setNodeImage] = useState("http://hive.kohze.com/images/header-image-dark.png");
     const [nodeHiveOrigin, setNodeHiveOrigin] = useState("");
     const [nodePreviousNode, setNodePreviousNode] = useState("");
@@ -112,10 +111,19 @@ export default function App() {
     // 1: not yet visited
     // 2: already visited
     // 3: likes
-    const hiveData = {
+    const [hiveData, setHiveData] = useState({
         nodes: [
-            {group: 2, id: 1, name: "Hive!"},
-
+            {
+                group: 2,
+                id: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                name: "Hive",
+                description: "Content is scattered across the web without connections. Inspired by nature, we envisioned a decentralized platform to combine efforts to interrelate the many lost dots again. With Hive, we find, share, and connect what actually matters to us.",
+                image: "http://hive.kohze.com/images/header-image-dark.png",
+                url: "http://hive.kohze.com/",
+                owner: "02756bc5aa14a990385f4a102767ce8a7fa73b0f3372cfb3b84be7463c6a15ed90",
+                origin: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                previousNode: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2"
+            },
             {
                 group: 2,
                 id: "6c3199b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
@@ -266,31 +274,96 @@ export default function App() {
             }
         ],
         links: [
-            {source: "6c3199b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2", target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6},
+            {
+                source: "6c3199b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                target: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
 
-            {source: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2", target: "6c3199b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2", curvature: 0.8, rotation: Math.PI * 1 / 6},
-            {source: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2", target: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2", curvature: 0.8, rotation: Math.PI * 1 / 6},
-            {source: "a096607b68ef10088caa1b2239ddc7d30940e1f2a707efd1de315519127b1033_o2", target: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2", curvature: 0.8, rotation: Math.PI * 1 / 6},
-            {source: "448c10c1192db06f30bdd7943179aee180c992e3041ada79af273c90fd6d5e99_o2", target: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2", curvature: 0.8, rotation: Math.PI * 1 / 6},
+            {
+                source: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2",
+                target: "6c3199b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
+            {
+                source: "e0cb1031e63d3ef93a1089ceb13ffd8493557fd084bccc7ec719ddeec5b44238_o2",
+                target: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
+            {
+                source: "a096607b68ef10088caa1b2239ddc7d30940e1f2a707efd1de315519127b1033_o2",
+                target: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
+            {
+                source: "448c10c1192db06f30bdd7943179aee180c992e3041ada79af273c90fd6d5e99_o2",
+                target: "5418b7b583ed3ba6aa8113e82b0a30126923317b0cc944800bba669303d1c26d_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
 
-            {source: "030e113a95ad10148dc5f5159da447ba9918ca4ee4aa82cd07e744446abd1e61_o2", target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6},
+            {
+                source: "030e113a95ad10148dc5f5159da447ba9918ca4ee4aa82cd07e744446abd1e61_o2",
+                target: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
 
-            {source: "44b7891370481142b19bc3e67346ec836ee0311d61881f6d1e2f86873b7f6ab0_o2", target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6},
-            {source: "0b39856df9e9d31a94661139a048c4dbfeb3b3632325208cf598d83583d97d92_o2", target: "44b7891370481142b19bc3e67346ec836ee0311d61881f6d1e2f86873b7f6ab0_o2", curvature: 0.8, rotation: Math.PI * 1 / 6},
+            {
+                source: "44b7891370481142b19bc3e67346ec836ee0311d61881f6d1e2f86873b7f6ab0_o2",
+                target: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
+            {
+                source: "0b39856df9e9d31a94661139a048c4dbfeb3b3632325208cf598d83583d97d92_o2",
+                target: "44b7891370481142b19bc3e67346ec836ee0311d61881f6d1e2f86873b7f6ab0_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
 
-            {source: "223dc38baa87af15f947d0dce260da1265e89f5e773c254a5aff115b9a75ff93_o2", target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6},
-            {source: "7147376d4a0fd01aa20c3c18459bd42f272fc6ff674a65141a5365ece5187cdf_o2", target: "223dc38baa87af15f947d0dce260da1265e89f5e773c254a5aff115b9a75ff93_o2", curvature: 0.8, rotation: Math.PI * 1 / 6},
+            {
+                source: "223dc38baa87af15f947d0dce260da1265e89f5e773c254a5aff115b9a75ff93_o2",
+                target: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
+            {
+                source: "7147376d4a0fd01aa20c3c18459bd42f272fc6ff674a65141a5365ece5187cdf_o2",
+                target: "223dc38baa87af15f947d0dce260da1265e89f5e773c254a5aff115b9a75ff93_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
 
-            {source: "71c5a7589ee8b52eac815649b8dc7f6323fecc094efcd794467293050cc19b30_o2", target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6},
+            {
+                source: "71c5a7589ee8b52eac815649b8dc7f6323fecc094efcd794467293050cc19b30_o2",
+                target: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
 
-            {source: "34eddcb120c181bbd7c88f4fd6658340f5ab8f21be7e9a707fffa05cba92174f_o2", target: 1, curvature: 0.8, rotation: Math.PI * 1 / 6},
-            {source: "91635449461fd52259f4542cee78fc58fab35b0737bc362fadcdd8602d1cf547_o2", target: "34eddcb120c181bbd7c88f4fd6658340f5ab8f21be7e9a707fffa05cba92174f_o2", curvature: 0.8, rotation: Math.PI * 1 / 6},
+            {
+                source: "34eddcb120c181bbd7c88f4fd6658340f5ab8f21be7e9a707fffa05cba92174f_o2",
+                target: "122799b2c5cc8a57159722d1b76536d54385fd670827a20b18f64f367b3ca3ce_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
+            {
+                source: "91635449461fd52259f4542cee78fc58fab35b0737bc362fadcdd8602d1cf547_o2",
+                target: "34eddcb120c181bbd7c88f4fd6658340f5ab8f21be7e9a707fffa05cba92174f_o2",
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            },
         ]
-    };
+    });
 
-    function makeId(length) {
-        let result           = '';
-        const characters       = 'abcdef0123456789';
+    function makeId() {
+        let result = '';
+        const characters = 'abcdef0123456789';
         const charactersLength = characters.length;
         for (let i = 0; i < 160; i++) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -299,6 +372,7 @@ export default function App() {
     }
 
     function _handleClick(node) {
+
         // Aim at node from outside it
         const distance = 40;
         const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
@@ -341,121 +415,122 @@ export default function App() {
     }
 
     return (
-            <div className={classes.root}>
-                <Container component="main" className={classes.main} maxWidth="xl">
+        <div className={classes.root}>
+            <Container component="main" className={classes.main} maxWidth="xl">
 
-                    <Typography variant="h4" component="h1" gutterBottom>
-                        Hive Chrome Extension
-                    </Typography>
+                <Typography variant="h4" component="h1" gutterBottom>
+                    Hive Chrome Extension
+                </Typography>
 
-                    <ForceGraph3D
-                        graphData={hiveData}
-                        nodeAutoColorBy="group"
-                        nodeLabel="name"
-                        linkDirectionalArrowLength={3.5}
-                        linkDirectionalArrowRelPos={1}
-                        linkWidth={2}
-                        linkCurvature="curvature"
-                        linkCurveRotation="rotation"
-                        linkDirectionalParticles={2}
-                        ref={el => {
-                            setFg(el)
-                        }}
-                        onNodeClick={_handleClick}
-                    />
+                <ForceGraph3D
+                    graphData={hiveData}
+                    nodeAutoColorBy="group"
+                    nodeLabel="name"
+                    linkDirectionalArrowLength={3.5}
+                    linkDirectionalArrowRelPos={1}
+                    linkWidth={2}
+                    linkCurvature="curvature"
+                    linkCurveRotation="rotation"
+                    linkDirectionalParticles={2}
+                    ref={el => {
+                        setFg(el)
+                    }}
+                    onNodeClick={_handleClick}
+                />
 
-                    <Drawer
-                        variant="permanent"
-                        style={{width: 400}}
-                        anchor="right"
-                    >
-                        <Paper className={classes.tabRoot}>
-                            <Tabs
-                                value={value}
-                                onChange={handleChange}
-                                indicatorColor="primary"
-                                textColor="primary"
-                            >
-                                <Tab label="View Hive Node" />
-                                <Tab label="Add Hive Node" />
-                            </Tabs>
-                            <TabPanel value={value} index={0}>
+                <Drawer
+                    variant="permanent"
+                    style={{width: 400}}
+                    anchor="right"
+                >
+                    <Paper className={classes.tabRoot}>
+                        <Tabs
+                            value={value}
+                            onChange={handleChange}
+                            indicatorColor="primary"
+                            textColor="primary"
+                        >
+                            <Tab label="View Hive Node"/>
+                            <Tab label="Add Hive Node"/>
+                        </Tabs>
+                        <TabPanel value={value} index={0}>
 
-                                <Typography variant="h5" component="h2" gutterBottom>
-                                    { nodeName }
-                                </Typography>
-                                    { nodeDescription }
-                                <Typography variant="h5" component="h2" gutterBottom>
-                                    <Link href={nodeUrl} target={"_blank"} variant="body2" className={classes.link}>
-                                        Go to page
-                                    </Link>
-                                </Typography>
+                            <Typography variant="h5" component="h2" gutterBottom>
+                                {nodeName}
+                            </Typography>
+                            {nodeDescription}
+                            <Typography variant="h5" component="h2" gutterBottom>
                                 <Link href={nodeUrl} target={"_blank"} variant="body2" className={classes.link}>
-                                    <img className={classes.image} src={ nodeImage } />
+                                    Go to page
                                 </Link>
+                            </Typography>
+                            <Link href={nodeUrl} target={"_blank"} variant="body2" className={classes.link}>
+                                <img className={classes.image} src={nodeImage}/>
+                            </Link>
 
-                            </TabPanel>
-                            <TabPanel value={value} index={1}>
-                                <h3>Details</h3>
-                                <form onSubmit={_handleSubmit}>
-                                    <TextField
-                                        label="Name"
-                                        value={nodeName}
-                                        onChange={e => setNodeName(e.target.value)}
-                                        fullWidth
-                                    />
-                                    <br/>
-                                    <TextField
-                                        label="description"
-                                        value={nodeDescription}
-                                        onChange={e => setNodeDescription(e.target.value)}
-                                        fullWidth
-                                    />
-                                    <br/>
-                                    <TextField
-                                        label="URL"
-                                        value={nodeUrl}
-                                        onChange={e => setNodeUrl(e.target.value)}
-                                        fullWidth
-                                    />
-                                    <br/>
-                                    <TextField
-                                        label="Image"
-                                        value={nodeImage}
-                                        onChange={e => setNodeImage(e.target.value)}
-                                        fullWidth
-                                    />
-                                    <br/>
-                                    <TextField
-                                        label="Previous Node"
-                                        value={nodePreviousNode}
-                                        onChange={e => setNodePreviousNode(e.target.value)}
-                                        fullWidth
-                                    />
-                                    <br/>
-                                    <br/>
-                                    <Button
-                                        type="submit"
-                                        variant="outlined"
-                                        color="primary"
-                                        onClick={_handleSubmit}
-                                    >Add Hive Node</Button>
-                                    <SweetAlert
-                                        show={showAlert}
-                                        title="Add Hive Node"
-                                        text="Hive Node successfully added!"
-                                        onConfirm={() => setShowAlert(false)}
-                                    />
-                                    <br/>
-                                    <br/>
-                                </form>
-                            </TabPanel>
-                        </Paper>
+                        </TabPanel>
+                        <TabPanel value={value} index={1}>
+                            <h3>Details</h3>
+                            <form onSubmit={_handleSubmit}>
+                                <TextField
+                                    label="Name"
+                                    value={newNodeName}
+                                    onChange={e => setNewNodeName(e.target.value)}
+                                    fullWidth
+                                />
+                                <br/>
+                                <TextField
+                                    label="description"
+                                    value={newNodeDescription}
+                                    onChange={e => setNewNodeDescription(e.target.value)}
+                                    fullWidth
+                                />
+                                <br/>
+                                <TextField
+                                    label="URL"
+                                    value={newNodeUrl}
+                                    onChange={e => setNewNodeUrl(e.target.value)}
+                                    fullWidth
+                                />
+                                <br/>
+                                <TextField
+                                    label="Image"
+                                    value={newNodeImage}
+                                    onChange={e => setNewNodeImage(e.target.value)}
+                                    fullWidth
+                                />
+                                <br/>
+                                <TextField
+                                    label="Previous Node"
+                                    enabled={false}
+                                    value={newNodePreviousNode}
+                                    onChange={e => setNewNodePreviousNode(e.target.value)}
+                                    fullWidth
+                                />
+                                <br/>
+                                <br/>
+                                <Button
+                                    type="submit"
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={_handleSubmit}
+                                >Add Hive Node</Button>
+                                <SweetAlert
+                                    show={showAlert}
+                                    title="Add Hive Node"
+                                    text={newNodeName + " successfully added!"}
+                                    onConfirm={() => setShowAlert(false)}
+                                />
+                                <br/>
+                                <br/>
+                            </form>
+                        </TabPanel>
+                    </Paper>
 
-                    </Drawer>
+                </Drawer>
 
-                </Container>
+            </Container>
 
-            </div>
+        </div>
     );
 }
