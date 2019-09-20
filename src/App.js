@@ -15,6 +15,9 @@ import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Drawer from '@material-ui/core/Drawer';
 
+import SweetAlert from 'sweetalert-react'; // eslint-disable-line import/no-extraneous-dependencies
+import 'sweetalert/dist/sweetalert.css';
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -101,6 +104,8 @@ export default function App() {
     const [newNodeImage, setNewNodeImage] = useState("");
     const [newNodeHiveOrigin, setNewNodeHiveOrigin] = useState("");
     const [newNodePreviousNode, setNewNodePreviousNode] = useState("");
+
+    const [showAlert, setShowAlert] = useState(false);
 
 
     // group reference:
@@ -283,6 +288,16 @@ export default function App() {
         ]
     };
 
+    function makeId(length) {
+        let result           = '';
+        const characters       = 'abcdef0123456789';
+        const charactersLength = characters.length;
+        for (let i = 0; i < 160; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
     function _handleClick(node) {
         // Aim at node from outside it
         const distance = 40;
@@ -303,19 +318,19 @@ export default function App() {
         setNodeHiveOrigin(node.origin);
         setNodePreviousNode(node.previousNode);
 
+        const newId = makeId();
+        const newOwner = makeId();
+
         setNewNodeGroup(node.group);
-        setNewNodeId(node.id);
-        setNewNodeName(node.name);
-        setNewNodeDescription(node.description);
-        setNewNodeOwner(node.owner);
-        setNewNodeUrl(node.url);
-        setNewNodeImage(node.image);
-        setNewNodeHiveOrigin(node.origin);
-        setNodePreviousNode(node.previousNode);
+        setNewNodeId(newId);
+        setNewNodeOwner(newOwner);
+        setNewNodeHiveOrigin(newId);
+        setNodePreviousNode(node.origin);
     }
 
     const _handleSubmit = (evt) => {
         evt.preventDefault();
+        setShowAlert(true);
     };
 
     const [value, setValue] = React.useState(0);
@@ -425,6 +440,12 @@ export default function App() {
                                         color="primary"
                                         onClick={_handleSubmit}
                                     >Add Hive Node</Button>
+                                    <SweetAlert
+                                        show={showAlert}
+                                        title="Add Hive Node"
+                                        text="Hive Node successfully added!"
+                                        onConfirm={() => setShowAlert(false)}
+                                    />
                                     <br/>
                                     <br/>
                                 </form>
@@ -435,12 +456,6 @@ export default function App() {
 
                 </Container>
 
-                <footer className={classes.footer}>
-                    <Container maxWidth="xl">
-
-
-                    </Container>
-                </footer>
             </div>
     );
 }
