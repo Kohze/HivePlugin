@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
 import {ForceGraph3D} from "react-force-graph";
 
 import Button from '@material-ui/core/Button';
@@ -399,12 +400,42 @@ export default function App() {
         setNewNodeId(newId);
         setNewNodeOwner(newOwner);
         setNewNodeHiveOrigin(newId);
-        setNodePreviousNode(node.origin);
+        setNewNodePreviousNode(node.origin);
     }
 
     const _handleSubmit = (evt) => {
         evt.preventDefault();
+
         setShowAlert(true);
+    };
+
+    const _handleAlertClose = () => {
+        let addNode = {
+            group: 1,
+            id: newNodeId,
+            name: newNodeName,
+            description: newNodeDescription,
+            image: newNodeImage,
+            url: newNodeUrl,
+            owner: newNodeOwner,
+            origin: newNodeHiveOrigin,
+            previousNode: newNodePreviousNode
+        };
+        setHiveData({
+            nodes: [...hiveData.nodes, addNode],
+            links: [...hiveData.links, {
+                source: newNodeId,
+                target: newNodePreviousNode,
+                curvature: 0.8,
+                rotation: Math.PI * 1 / 6
+            }]
+        });
+
+        setShowAlert(false)
+        setNewNodeImage("");
+        setNewNodeUrl("");
+        setNewNodeDescription("");
+        setNewNodeName("");
     };
 
     const [value, setValue] = React.useState(0);
@@ -474,6 +505,7 @@ export default function App() {
                             <form onSubmit={_handleSubmit}>
                                 <TextField
                                     label="Name"
+                                    required={true}
                                     value={newNodeName}
                                     onChange={e => setNewNodeName(e.target.value)}
                                     fullWidth
@@ -481,6 +513,7 @@ export default function App() {
                                 <br/>
                                 <TextField
                                     label="description"
+                                    required={true}
                                     value={newNodeDescription}
                                     onChange={e => setNewNodeDescription(e.target.value)}
                                     fullWidth
@@ -488,6 +521,7 @@ export default function App() {
                                 <br/>
                                 <TextField
                                     label="URL"
+                                    required={true}
                                     value={newNodeUrl}
                                     onChange={e => setNewNodeUrl(e.target.value)}
                                     fullWidth
@@ -495,6 +529,7 @@ export default function App() {
                                 <br/>
                                 <TextField
                                     label="Image"
+                                    required={true}
                                     value={newNodeImage}
                                     onChange={e => setNewNodeImage(e.target.value)}
                                     fullWidth
@@ -502,7 +537,8 @@ export default function App() {
                                 <br/>
                                 <TextField
                                     label="Previous Node"
-                                    enabled={false}
+                                    required={true}
+                                    disabled={true}
                                     value={newNodePreviousNode}
                                     onChange={e => setNewNodePreviousNode(e.target.value)}
                                     fullWidth
@@ -510,6 +546,7 @@ export default function App() {
                                 <br/>
                                 <br/>
                                 <Button
+                                    disabled={!(newNodePreviousNode && newNodeImage && newNodeUrl && newNodeDescription && newNodeName)}
                                     type="submit"
                                     variant="outlined"
                                     color="primary"
@@ -519,7 +556,7 @@ export default function App() {
                                     show={showAlert}
                                     title="Add Hive Node"
                                     text={newNodeName + " successfully added!"}
-                                    onConfirm={() => setShowAlert(false)}
+                                    onConfirm={_handleAlertClose}
                                 />
                                 <br/>
                                 <br/>
