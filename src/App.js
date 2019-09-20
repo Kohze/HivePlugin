@@ -13,6 +13,7 @@ import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
+import Drawer from '@material-ui/core/Drawer';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -51,7 +52,7 @@ const useStyles = makeStyles(theme => ({
         minHeight: '100vh',
     },
     tabRoot: {
-        flexGrow: 1,
+        width: '400px',
         backgroundColor: theme.palette.background.paper,
     },
     main: {
@@ -70,7 +71,7 @@ const useStyles = makeStyles(theme => ({
         display: 'block',
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: '50%'
+        width: '95%'
     }
 }));
 
@@ -89,6 +90,18 @@ export default function App() {
     const [nodeImage, setNodeImage] = useState("http://hive.kohze.com/images/header-image-dark.png");
     const [nodeHiveOrigin, setNodeHiveOrigin] = useState("");
     const [nodePreviousNode, setNodePreviousNode] = useState("");
+
+    //newNode:
+    const [newNodeGroup, setNewNodeGroup] = useState(0);
+    const [newNodeId, setNewNodeId] = useState(0);
+    const [newNodeName, setNewNodeName] = useState("");
+    const [newNodeDescription, setNewNodeDescription] = useState("");
+    const [newNodeOwner, setNewNodeOwner] = useState("");
+    const [newNodeUrl, setNewNodeUrl] = useState("");
+    const [newNodeImage, setNewNodeImage] = useState("");
+    const [newNodeHiveOrigin, setNewNodeHiveOrigin] = useState("");
+    const [newNodePreviousNode, setNewNodePreviousNode] = useState("");
+
 
     // group reference:
     // 1: not yet visited
@@ -289,6 +302,16 @@ export default function App() {
         setNodeImage(node.image);
         setNodeHiveOrigin(node.origin);
         setNodePreviousNode(node.previousNode);
+
+        setNewNodeGroup(node.group);
+        setNewNodeId(node.id);
+        setNewNodeName(node.name);
+        setNewNodeDescription(node.description);
+        setNewNodeOwner(node.owner);
+        setNewNodeUrl(node.url);
+        setNewNodeImage(node.image);
+        setNewNodeHiveOrigin(node.origin);
+        setNodePreviousNode(node.previousNode);
     }
 
     const _handleSubmit = (evt) => {
@@ -303,24 +326,14 @@ export default function App() {
     }
 
     return (
-        <div
-            style={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%)'
-            }}
-        >
             <div className={classes.root}>
-                <CssBaseline/>
-                <Container component="main" className={classes.main} maxWidth="xl" fixed>
-                    <Typography variant="h2" component="h1" gutterBottom>
+                <Container component="main" className={classes.main} maxWidth="xl">
+
+                    <Typography variant="h4" component="h1" gutterBottom>
                         Hive Chrome Extension
                     </Typography>
 
                     <ForceGraph3D
-                        height={400}
-                        width={1000}
                         graphData={hiveData}
                         nodeAutoColorBy="group"
                         nodeLabel="name"
@@ -336,18 +349,17 @@ export default function App() {
                         onNodeClick={_handleClick}
                     />
 
-                </Container>
-
-                <footer className={classes.footer}>
-                    <Container maxWidth="xl">
-
+                    <Drawer
+                        variant="permanent"
+                        style={{width: 400}}
+                        anchor="right"
+                    >
                         <Paper className={classes.tabRoot}>
                             <Tabs
                                 value={value}
                                 onChange={handleChange}
                                 indicatorColor="primary"
                                 textColor="primary"
-                                centered
                             >
                                 <Tab label="View Hive Node" />
                                 <Tab label="Add Hive Node" />
@@ -357,9 +369,7 @@ export default function App() {
                                 <Typography variant="h5" component="h2" gutterBottom>
                                     { nodeName }
                                 </Typography>
-                                <Typography variant="subtitle1" component="h2" gutterBottom>
                                     { nodeDescription }
-                                </Typography>
                                 <Typography variant="h5" component="h2" gutterBottom>
                                     <Link href={nodeUrl} target={"_blank"} variant="body2" className={classes.link}>
                                         Go to page
@@ -420,9 +430,17 @@ export default function App() {
                                 </form>
                             </TabPanel>
                         </Paper>
+
+                    </Drawer>
+
+                </Container>
+
+                <footer className={classes.footer}>
+                    <Container maxWidth="xl">
+
+
                     </Container>
                 </footer>
             </div>
-        </div>
     );
 }
