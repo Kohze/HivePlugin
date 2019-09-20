@@ -107,7 +107,6 @@ export default function App() {
 
     const [showAlert, setShowAlert] = useState(false);
 
-
     // group reference:
     // 1: not yet visited
     // 2: already visited
@@ -5018,13 +5017,7 @@ export default function App() {
     }
 
     return (
-        <div className={classes.root}>
-            <Container component="main" className={classes.main} maxWidth="xl">
-
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Hive Chrome Extension
-                </Typography>
-
+        <div >
                 <ForceGraph3D
                     graphData={hiveData}
                     nodeAutoColorBy="group"
@@ -5136,10 +5129,7 @@ export default function App() {
                             </form>
                         </TabPanel>
                     </Paper>
-
                 </Drawer>
-
-            </Container>
 
         </div>
     );
